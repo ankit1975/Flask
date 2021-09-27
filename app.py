@@ -15,7 +15,7 @@ def skill():
 
 @app.route('/video')
 def video():
-    link = request.args.get('vid')
+    vid = request.args.get('vid')
     return render_template('video.html', vid = vid)
 
 @app.errorhandler(404)
