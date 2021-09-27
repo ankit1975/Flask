@@ -19,7 +19,7 @@ def video():
     # print(vid)
 
     if vid == None:
-        vid = '2mzH2dbZWYo'
+        vid = 'yVZIrQn-J0w'
     return render_template('video.html', vid = vid)
 
 @app.errorhandler(404)
