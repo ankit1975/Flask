@@ -22,6 +22,30 @@ def video():
         vid = 'yVZIrQn-J0w'
     return render_template('video.html', vid = vid)
 
+@app.route('/covidslot')
+def covidslot():
+    
+    pincode = request.args.get('pincode')
+    date = request.args.get('date')
+
+    link = f'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode={pincode}&date={date}'
+    import requests
+    URL = link
+    r = requests.get(URL)
+
+    import json
+    dictr = json.loads(r.text)
+    rkey = dictr.keys()
+    rvalue = list(dictr.values())
+
+    # for i in range(len(rvalue[0])):
+    #     print(rvalue[0][i])
+
+    return render_template('covidslot.html',
+                          rvalue=rvalue,
+                          ran=range(len(rvalue[0])),
+                          )
+
 @app.errorhandler(404)
 def page_not_found(e):
     return ( render_template('404.html'), 404 )
