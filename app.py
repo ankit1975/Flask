@@ -24,14 +24,16 @@ def video():
 
 @app.route('/covidslot')
 def covidslot():
-    
-    pincode = request.args.get('pincode')
-    date = request.args.get('date')
+    from flask import request as req
+    pincode = req.args.get('pincode')
+    date = req.args.get('date')
 
     link = f'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode={pincode}&date={date}'
-    import requests
+    from urllib import request
+    from bs4 import BeautifulSoup
     URL = link
-    r = requests.get(URL)
+    html = request.urlopen(URL).read()
+    r = BeautifulSoup(html,'html.parser')
 
     import json
     dictr = json.loads(r.text)
