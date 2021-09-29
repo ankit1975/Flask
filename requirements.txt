@@ -1,6 +1,5 @@
 Flask==1.0.0
 gunicorn==20.1.0
 eventlet==0.30.2
-json
 bs4
 urllib3==1.26.2
